@@ -64,7 +64,7 @@ self.onmessage = function (e) {
         // already have enough. The private tags are :
         //   (0069,1012) truncation offset of layer 1 from the beginning of j2k codestream
         //   (0069,1013) truncation offset of layer 2 from the beginning of j2k codestream
-        //   (0069,1013) truncation offset of layer 3 from the beginning of j2k codestream
+        //   (0069,1014) truncation offset of layer 3 from the beginning of j2k codestream
 
         startTime = Date.now();
         xhr = new XMLHttpRequest();
@@ -94,9 +94,9 @@ self.onmessage = function (e) {
             layers: [],
         };
 
-        if (dataSet.elements.x00691011 !== undefined) {
+        if (dataSet.elements.x00690010 !== undefined) {
             for (var i = 2; dataSet.uint32('x0069101' + i) !== undefined && dataSet.uint32('x0069101' + i) !== 0; i++) {
-                parsedDicomData.numberOfLayers = i - 1;
+                parsedDicomData.numberOfLayers = i-1;
                 parsedDicomData.layers.push(dataSet.uint32('x0069101' + i));
             }
             var layerOffset = parsedDicomData.layers[parsedId.requestedQuality - 1];

@@ -110,15 +110,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             cornerstone.displayImage(element, image);
             jelement.find(".topleft").html('Patient Name: ' + image.parsedDicomData.patientName + '<br>SomeOtherField: multi-line test');
             jelement.find(".bottomleft").text(image.parsedDicomData.sliceLocation);
+            var color = "#FFFFFF";
             if (image.loadedLayers !== image.parsedDicomData.numberOfLayers) {
-                if (image.loadedLayers === 1) {
-                    jelement.find(".topright").html('<span style="font-size: 1.2em;color: #CC3300;" class="glyphicon glyphicon glyphicon-eye-close"></span>');
-                } else {
-                    jelement.find(".topright").html('<span style="font-size: 1.2em;color: #FFD119;" class="glyphicon glyphicon glyphicon-eye-close"></span>');
+                switch (image.loadedLayers) {
+                    case 1:
+                        color = "#CC3300"; //red
+                        break;
+                    case 2:
+                        color = "#FFD119"; // yellow
+                        break;
+                    case 3:
+                        color = "#005e06"; // green
+                        break;
+                    default:
+                        // white
+                        break;
                 }
-            } else {
-                jelement.find(".topright").html('<span style="font-size: 1.2em;" class="glyphicon glyphicon glyphicon-eye-open"></span>');
             }
+            jelement.find(".topright").html('<span style="font-size: 1.2em;color: ' + color + '" class="glyphicon glyphicon glyphicon-eye-open"></span>');
             window.clearTimeout(viewTimerId);
 
             if (image.loadedLayers < Math.min(image.parsedDicomData.numberOfLayers, maxLayer)) {
@@ -146,6 +155,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 perfStats.totalInitialDecodeTime += stats.j2kDecodeTime;
                 perfStats.totalInitialDicomParsingTime += stats.dicomParseTime;
                 $('#progress-bar').width((++perfStats.progress / (maxImage - 1)) * 100 + '%');
+                console.log('progress = ' + perfStats.progress );
+                if (perfStats.progress > maxImage - 10) {
+                    console.log('almost finishing...');
+                }
                 if (perfStats.progress == maxImage - 1) {
                     $('#progress-bar-container').css('visibility', 'hidden');
                     perfStats.decodeCompleteTime = Date.now();
