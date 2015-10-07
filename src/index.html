@@ -156,9 +156,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 perfStats.totalInitialDicomParsingTime += stats.dicomParseTime;
                 $('#progress-bar').width((++perfStats.progress / (maxImage - 1)) * 100 + '%');
                 console.log('progress = ' + perfStats.progress );
-                if (perfStats.progress > maxImage - 10) {
-                    console.log('almost finishing...');
-                }
                 if (perfStats.progress == maxImage - 1) {
                     $('#progress-bar-container').css('visibility', 'hidden');
                     perfStats.decodeCompleteTime = Date.now();

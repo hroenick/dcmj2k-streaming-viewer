@@ -1,8 +1,9 @@
 {
     "name": "jpx_js",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "authors": [
-        "Jean-Francois Pambrun <jf.pambrun@gmail.com>"
+        "Jean-Francois Pambrun <jf.pambrun@gmail.com>",
+        "Hugo Roenick <hroenick@gmail.com>"
     ],
     "description": "J2K JS viewer",
     "main": "index.html",
