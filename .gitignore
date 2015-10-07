@@ -5,7 +5,6 @@ jpx.sublime-workspace
 *.j2c
 *.swp
 node_modules/
-data/
 dist/
 bower_components/
 

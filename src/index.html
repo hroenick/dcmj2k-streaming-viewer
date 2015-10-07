@@ -53,6 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <script src="./js/dicomparser.js" type="text/javascript"></script>
     <!-- include the hammer.js library for touch gestures-->
     <script type="text/javascript">
+        var default_dir = "../data/";
         var maxImage = 9; //748;
         var currentImage = 0;
         var maxLayer = 10;
@@ -228,7 +229,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             // check if files exists
             for (var i = 0; i <= maxImage; i++ ) {
                 var s = "000" + i;
-                var filename = "../data/" + s.substr(s.length - 4) + ".dcm";
+                var filename = default_dir + s.substr(s.length - 4) + ".dcm";
                 xhr = new XMLHttpRequest();
                 xhr.open("GET", filename, false);
                 xhr.setRequestHeader('Range', 'bytes=0-2');
@@ -242,7 +243,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             // add to load cache image
             for (var i = 0; i <= maxImage; i++) {
                 var s = "000" + i;
-                var filename = "../data/" + s.substr(s.length - 4) + ".dcm?quality=1";
+                var filename = default_dir + s.substr(s.length - 4) + ".dcm?quality=1";
                 urls.push("dcmj2k:" + filename);
                 cornerstone.loadAndCacheImage(urls[i]);
             }
