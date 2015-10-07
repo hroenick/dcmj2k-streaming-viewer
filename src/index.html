@@ -53,7 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <script src="./js/dicomparser.js" type="text/javascript"></script>
     <!-- include the hammer.js library for touch gestures-->
     <script type="text/javascript">
-        var maxImage = 10; //748;
+        var maxImage = 9; //748;
         var currentImage = 0;
         var maxLayer = 10;
         var urls = [];
@@ -225,6 +225,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             cornerstone.imageCache.setMaximumSizeBytes(1000 * 1024 * 1024);
             cornerstoneDCMJ2KImageLoader.setProgressCallback(progressCallback);
             // This is just a demo, but I need to find a better way to pass images list.
+            // check if files exists
+            for (var i = 0; i <= maxImage; i++ ) {
+                var s = "000" + i;
+                var filename = "../data/" + s.substr(s.length - 4) + ".dcm";
+                xhr = new XMLHttpRequest();
+                xhr.open("GET", filename, false);
+                xhr.setRequestHeader('Range', 'bytes=0-2');
+                //xhr.responseType = 'arraybuffer';
+                xhr.send();
+                if (xhr.status === 404) {
+                    maxImage = --i;
+                    break;
+                }
+            }
+            // add to load cache image
             for (var i = 0; i <= maxImage; i++) {
                 var s = "000" + i;
                 var filename = "../data/" + s.substr(s.length - 4) + ".dcm?quality=1";
