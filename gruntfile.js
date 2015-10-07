@@ -259,6 +259,7 @@ module.exports = function (grunt) {
     grunt.registerTask('prod', ['uglify:prod', 'copy:prod', 'htmlmin:prod']);
     grunt.registerTask('up', ['prod', 'rsync:up']);
     grunt.registerTask('serv', ['dev', 'connect:serv', 'watch:serv']);
+    grunt.registerTask('run', ['connect:serv', 'watch:serv']);
     grunt.registerTask('beautify', ['jsbeautifier']);
     grunt.registerTask('hook', ['copy:hooks']);
     grunt.registerTask('bench', ['dev', 'shell:bench']);
