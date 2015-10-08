@@ -81,7 +81,7 @@ var cornerstoneDCMJ2KImageLoader = (function ($, cornerstone, cornerstoneDCMJ2KI
         var firstAvailableWorker = workerReady.indexOf(true);
         if (cachedImagePromise !== undefined) {
             cachedImagePromise.then(function (image) {
-                cornerstone.imageCache.removeImageId(image.imageId);
+                cornerstone.imageCache.removeImagePromise(image.imageId);
                 var oldDcmData = new Uint8Array(image.getDcmData());
                 var message = {
                     imageId: imageId,

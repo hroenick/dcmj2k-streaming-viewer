@@ -82,7 +82,9 @@ self.onmessage = function (e) {
         dcmData = new Uint8Array(xhr.response);
 
         startTime = Date.now();
-        var dataSet = dicomParser.parseDicom(dcmData);
+        var options = {};
+        options.untilTag = 'x7fe00010';
+        var dataSet = dicomParser.parseDicom(dcmData, options);
 
         parsedDicomData = {
             patientName: dataSet.string('x00100020'),
