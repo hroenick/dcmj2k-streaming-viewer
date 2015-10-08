@@ -98,8 +98,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
         function disableAllTools(element) {
-            cornerstoneTools.touchDragTool(stackOnDrag).deactivate(element);
             cornerstoneTools.panTouchDrag.deactivate(element);
+            cornerstoneTools.stackScroll.deactivate(element, 1);
+            cornerstoneTools.stackScrollTouchDrag.deactivate(element);
+            cornerstoneTools.wwwc.deactivate(element, 1);
             cornerstoneTools.wwwcTouchDrag.deactivate(element);
             cornerstoneTools.pan.activate(element, 2); // 2 is middle mouse button
             cornerstoneTools.zoom.activate(element, 4); // 4 is right mouse button
@@ -267,6 +269,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 var jelement = $("#im1");
                 var element = jelement.get(0);
                 disableAllTools(element);
+                cornerstoneTools.wwwc.activate(element, 1);
                 cornerstoneTools.wwwcTouchDrag.activate(element);
             });
 
@@ -289,7 +292,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 var jelement = $("#im1");
                 var element = jelement.get(0);
                 disableAllTools(element);
-                cornerstoneTools.panTouchDrag.activate(element);
+                cornerstoneTools.pan.activate(element, 1);
+                cornerstoneTools.panTouchDrag.activate(element, 1);
             });
 
             $('#stackbtn').click(function() {
@@ -298,7 +302,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 var jelement = $("#im1");
                 var element = jelement.get(0);
                 disableAllTools(element);
-                cornerstoneTools.touchDragTool(stackOnDrag).activate(element);
+                cornerstoneTools.stackScroll.activate(element, 1);
+                cornerstoneTools.stackScrollTouchDrag.activate(element);
             });
 
             $('#anglebtn').click(function() {
@@ -341,6 +346,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 changeImage(jelement, element, image, urls[0]);
                 cornerstoneTools.mouseInput.enable(element);
                 cornerstoneTools.mouseWheelInput.enable(element);
+                cornerstoneTools.wwwc.activate(element, 1); // pan is the default tool for middle mouse button
                 cornerstoneTools.pan.activate(element, 2); // pan is the default tool for middle mouse button
                 cornerstoneTools.zoom.activate(element, 4); // zoom is the default tool for right mouse button
                 cornerstoneTools.probe.enable(element);
@@ -348,7 +354,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 cornerstoneTools.ellipticalRoi.enable(element);
                 cornerstoneTools.rectangleRoi.enable(element);
                 cornerstoneTools.angle.enable(element);
-
+                cornerstoneTools.stackScroll.enable(element, 1);
+                cornerstoneTools.stackScrollTouchDrag.enable(element);
                 cornerstoneTools.touchInput.enable(element);
                 cornerstoneTools.zoomTouchPinch.activate(element);
                 cornerstoneTools.wwwcTouchDrag.activate(element);
